@@ -10,6 +10,6 @@ app.use(routes)
 app.use(session({secret: 'ninja', saveUninitialized: false, resave: false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
-const server = app.listen(3000, _ => {
+const server = app.listen(process.env.PORT || 3000, _ => {
   console.log('Listening on ' + server.address().port)
 })

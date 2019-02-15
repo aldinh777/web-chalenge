@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<title>Chalenge 2</title>
+<style>
+  div {
+    font-size: 10px;
+    position: fixed;
+  }
+  .topright {
+    top: 0px;
+    right: 0px;
+  }
+  .downright {
+    bottom: 0px;
+    right: 0px;
+  }
+</style>
+<div class="topright">username : "david"</div>
+<div class="downright">password : "copperfield"</div>
+<h3>Hint : Di Pojokan Memang Nikmat</h3>
+<form action="/signin/02" method="POST">
+  <label for="username">Username</label>
+  <br/>
+  <input type="text" name="username" id="username" required="required">
+  <br/>
+  <label for="password">Password</label>
+  <br/>
+  <input type="password" name="password" id="password" required="required">
+  <br/>
+  <button type="submit">Sign In</button>
+</form>
+<img src="/image/move-fast.gif" style="width: 150px;">

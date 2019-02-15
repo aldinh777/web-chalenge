@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<title>Chalenge 5</title>
+<h3>Hint : di Kodingannya ada kok</h3>
+<div id="username-value">username : "kirito"</div>
+<div id="password-value">password : "terlalu op"</div>
+<form action="/signin/05" method="POST">
+  <label for="username">Username</label>
+  <br/>
+  <input type="text" name="username" id="username" required="required">
+  <br/>
+  <label for="password">Password</label>
+  <br/>
+  <input type="password" name="password" id="password" required="required">
+  <br/>
+  <button type="submit">Sign In</button>
+</form>
+<img src="/image/squid-hacking.gif" style="width: 150px;">
+<script>
+  document.body.removeChild(document.getElementById('username-value'));
+  document.body.removeChild(document.getElementById('password-value'));
+</script>

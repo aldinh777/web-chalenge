@@ -1,6 +1,16 @@
 {
 	"dependencies": {
 		"express": "^4.16.4",
-		"express-session": "^1.15.6"
+		"express-session": "^1.15.6",
+		"react": "^16.8.4",
+		"react-dom": "^16.8.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.3.4",
+		"@babel/preset-env": "^7.3.4",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.5",
+		"webpack": "^4.29.6",
+		"webpack-cli": "^3.3.0"
 	}
 }

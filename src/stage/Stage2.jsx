@@ -78,6 +78,7 @@ class Stage2 extends React.Component {
 
     if (completed) {
       if (usernameValue === username && passwordValue === password) {
+        clearInterval(this.resetInterval)
         success('Berhasil')
         onSuccess()
       } else {
@@ -106,7 +107,7 @@ class Stage2 extends React.Component {
             type: 'STG_2_START'
           })
           info('Klik Semua Tombol dalam 5 detik')
-          setInterval(() => {
+          this.resetInterval = setInterval(() => {
             dispatch({
               type: 'STG_2_RESET',
               payload: buttons.map(subArray => {

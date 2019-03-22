@@ -21,7 +21,10 @@ const initialState = {
       [false, false, false, false, false, false, false, false, false, false],
       [false, false, false, false, false, false, false, false, false, false],
       [false, false, false, false, false, false, false, false, false, false],
-    ]
+    ],
+  },
+  stage3_data: {
+    times: 0,
   }
 }
 
@@ -91,6 +94,22 @@ function reducer(state = initialState, action) {
         stage2_data: {
           ...state.stage2_data,
           buttons: action.payload,
+        }
+      }
+    case 'STG_3_RAISE':
+      return {
+        ...state,
+        stage3_data: {
+          ...state.stage3_data,
+          times: state.stage3_data.times + 1,
+        }
+      }
+    case 'STG_3_RESET':
+      return {
+        ...state,
+        stage3_data: {
+          ...state.stage3_data,
+          times: 0,
         }
       }
   }

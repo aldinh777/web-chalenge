@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import {
   success,
@@ -7,78 +8,104 @@ import {
 
 class Stage1 extends React.Component {
 
-  blink(e) {
-    const form = document.querySelector('form')
-    const button = e.target
-    const hilang = document.createElement('span')
+  constructor(props) {
+    super(props)
 
-    hilang.style.position = 'relative'
-    hilang.style.top = button.style.top
-    hilang.style.left = button.style.left
+    this.onClick = this.onClick.bind(this)
+    this.blink = this.blink.bind(this)
+    this.showButton = this.showButton.bind(this)
+  }
 
-    button.style.display = 'none'
-
-    hilang.append('Hilang???')
-    form.append(hilang)
+  blink() {
+    this.props.dispatch({
+      type: 'STG_1_HIDE_BUTTON',
+    })
 
     setTimeout(() => {
-      const {left, top} = button.style
-
-      if (left === '0px' && top === '0px') {
-        button.style.left = '300px'
-      } else if (left === '300px' && top === '0px') {
-        button.style.left = '0px'
-        button.style.top = '100px'
-      } else if (left === '0px' && top === '100px') {
-        button.style.top = '0px'
+      const {buttonLeft, buttonTop} = this.props
+      const position = {
+        buttonLeft, buttonTop
       }
-      button.style.display = 'inline'
-      hilang.remove()
+
+      if (buttonLeft === 0 && buttonTop === 0) {
+        position.buttonLeft = 300
+      } else if (buttonLeft === 300 && buttonTop === 0) {
+        position.buttonLeft = 0
+        position.buttonTop = 100
+      } else if (buttonLeft === 0 && buttonTop === 100) {
+        position.buttonTop = 0
+      }
+
+      this.props.dispatch({
+        type: 'STG_1_SHOW_BUTTON',
+        payload: position,
+      })
     }, 1000)
   }
 
+  showButton() {
+    const {buttonLeft, buttonTop, hideButton} = this.props
+    const buttonStyle = {
+      position: 'relative',
+      left: buttonLeft,
+      top: buttonTop,
+    }
+
+    if (hideButton) {
+      return (
+        <span style={buttonStyle}>
+          Hilang???
+        </span>
+      )
+    } else {
+      return (
+        <button
+        style={buttonStyle}
+        type='button'
+        onClick={this.onClick}
+        onMouseOver={this.blink}
+        onFocus={this.blink}
+        >
+          Submit
+        </button>
+      )
+    }
+  }
+
   onClick() {
-    const form = document.querySelector('form')
-    const usernameValue = document.querySelector('#username').value
-    const passwordValue = document.querySelector('#password').value
+    const form = this.form
+    const usernameValue = this.username.value
+    const passwordValue = this.password.value
     const {username, password} = form.dataset
 
     if (usernameValue !== username && passwordValue !== password) {
       failed('Username atau Password Salah')
     } else {
       success('Berhasil')
+      this.props.onSuccess()
     }
   }
 
   render() {
     return (
       <form  
-        data-username='kawfee' 
-        data-password='gruinti'
+      data-username='kawfee' 
+      data-password='gruinti'
+      ref={ref => this.form = ref}
       >
         <h6>Stage 1</h6>
         <label htmlFor='username'>Username</label>
         <br/>
-        <input type='text' name='username' id='username'/>
+        <input type='text' name='username' ref={ref => this.username = ref}/>
         <br/>
         <label htmlFor='password'>Password</label>
         <br/>
-        <input type='password' name='password' id='password'/>
+        <input type='password' name='password' ref={ref => this.password = ref}/>
         <br/>
-        <button 
-          style={{
-            position: 'relative',
-            top: 0,
-            left: 0,
-          }}
-          type='button' 
-          onClick={this.onClick}
-          onMouseOver={this.blink}
-          onFocus={this.blink}
-        >Submit</button>
+        {this.showButton()}
       </form>
     )
   }
 }
 
-export default Stage1
+export default connect(state => state['stage1_data'])(Stage1)

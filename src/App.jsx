@@ -10,12 +10,23 @@ import ExtraStage from './stage/ExtraStage.jsx'
 
 class App extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.levelUp = this.levelUp.bind(this)
+  }
+
+  levelUp() {
+    this.props.dispatch({
+      type: 'LEVEL_UP'
+    })
+  }
+
   render() {
     const { stage } = this.props
 
     switch (stage) {
       case 1:
-        return <Stage1/>
+        return <Stage1 onSuccess={this.levelUp}/>
       case 2:
         return <Stage2/>
       case 3:

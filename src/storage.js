@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 
 const initialState = {
-
+  stage: 1,
 }
 
 function reducer(state = initialState, action) {

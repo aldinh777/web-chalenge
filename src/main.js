@@ -7,4 +7,4 @@ import storage from './storage'
 
 ReactDOM.render(<Provider store={storage}>
   <App/>
-</Provider>, document.querySelector('#main'));
+</Provider>, document.querySelector('#main'))

@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"start": "webpack & node server.js"
+	},
 	"dependencies": {
 		"express": "^4.16.4",
 		"express-session": "^1.15.6",

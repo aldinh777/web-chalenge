@@ -16,7 +16,9 @@ class App extends React.Component {
   }
 
   levelUp() {
-    this.props.dispatch({
+    const {dispatch} = this.props
+
+    dispatch({
       type: 'LEVEL_UP'
     })
   }
@@ -28,15 +30,15 @@ class App extends React.Component {
       case 1:
         return <Stage1 onSuccess={this.levelUp}/>
       case 2:
-        return <Stage2/>
+        return <Stage2 onSuccess={this.levelUp}/>
       case 3:
-        return <Stage3/>
+        return <Stage3 onSuccess={this.levelUp}/>
       case 4:
-        return <Stage4/>
+        return <Stage4 onSuccess={this.levelUp}/>
       case 'final':
-        return <FinalStage/>
+        return <FinalStage onSuccess={this.levelUp}/>
       case 'extra':
-        return <ExtraStage/>
+        return <ExtraStage onSuccess={this.levelUp}/>
     }
     return null
   }

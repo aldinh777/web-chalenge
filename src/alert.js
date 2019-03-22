@@ -37,7 +37,7 @@ function createAlertField(text, color) {
         break
       case 'stop':
         stop += 10
-        if (stop >= 1000) {
+        if (stop >= 2000) {
           flow = 'up'
         }
         break
@@ -55,4 +55,8 @@ export function success(text) {
 
 export function failed(text) {
   createAlertField(text, 'red')
+}
+
+export function info(text) {
+  createAlertField(text, 'lightblue')
 }

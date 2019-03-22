@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "webpack & node server.js"
+		"start": "webpack --mode=production & node server.js"
 	},
 	"dependencies": {
 		"express": "^4.16.4",

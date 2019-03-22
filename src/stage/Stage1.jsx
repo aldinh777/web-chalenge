@@ -17,12 +17,13 @@ class Stage1 extends React.Component {
   }
 
   blink() {
-    this.props.dispatch({
+    const {buttonLeft, buttonTop, dispatch} = this.props  
+
+    dispatch({
       type: 'STG_1_HIDE_BUTTON',
     })
 
     setTimeout(() => {
-      const {buttonLeft, buttonTop} = this.props
       const position = {
         buttonLeft, buttonTop
       }
@@ -36,7 +37,7 @@ class Stage1 extends React.Component {
         position.buttonTop = 0
       }
 
-      this.props.dispatch({
+      dispatch({
         type: 'STG_1_SHOW_BUTTON',
         payload: position,
       })
@@ -73,16 +74,18 @@ class Stage1 extends React.Component {
   }
 
   onClick() {
+    const {onSuccess} = this.props
+
     const form = this.form
     const usernameValue = this.username.value
     const passwordValue = this.password.value
     const {username, password} = form.dataset
 
-    if (usernameValue !== username && passwordValue !== password) {
-      failed('Username atau Password Salah')
-    } else {
+    if (usernameValue === username && passwordValue === password) {
       success('Berhasil')
-      this.props.onSuccess()
+      onSuccess()
+    } else {
+      failed('Username atau Password Salah')
     }
   }
 

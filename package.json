@@ -3,7 +3,9 @@
 		"express": "^4.16.4",
 		"express-session": "^1.15.6",
 		"react": "^16.8.4",
-		"react-dom": "^16.8.4"
+		"react-dom": "^16.8.4",
+		"react-redux": "^6.0.1",
+		"redux": "^4.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.3.4",

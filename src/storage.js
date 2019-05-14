@@ -25,7 +25,11 @@ const initialState = {
   },
   stage3_data: {
     times: 0,
-  }
+  },
+  stage4_data: {
+    usernameAnswer: '',
+    passwordAnswer: '',
+  },
 }
 
 function levelUp(stage) {
@@ -110,6 +114,15 @@ function reducer(state = initialState, action) {
         stage3_data: {
           ...state.stage3_data,
           times: 0,
+        }
+      }
+    case 'STG_4_RANDOMIZE':
+      return {
+        ...state,
+        stage4_data: {
+          ...state.stage3_data,
+          usernameAnswer: `nicola${Math.floor(Math.random() * 1000000)}`,
+          passwordAnswer: `tesla${Math.floor(Math.random() * 1000000)}`,
         }
       }
   }

@@ -106,7 +106,9 @@ class Stage2 extends React.Component {
           dispatch({
             type: 'STG_2_START'
           })
-          info('Klik Semua Tombol dalam 5 detik')
+          setTimeout(() => {
+            info('Klik Semua Tombol dalam 5 detik')
+          }, 3000)
           this.resetInterval = setInterval(() => {
             dispatch({
               type: 'STG_2_RESET',

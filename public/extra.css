@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Sans Undertale';
+  src: url('/font/UndertaleSans.ttf') format('truetype');
+}
+
+#sans {
+  position: fixed;
+  width: 200px;
+  font-family: 'Sans Undertale';
+  text-align: center;
+}

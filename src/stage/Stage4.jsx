@@ -21,7 +21,7 @@ class Stage4 extends React.Component {
       dispatch({
         type: 'STG_4_RANDOMIZE',
       })
-    }, 1000)
+    }, 200)
   }
 
   componentWillUnmount() {

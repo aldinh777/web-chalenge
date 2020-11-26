@@ -49,6 +49,51 @@ function createAlertField(text, color) {
   }, 10)
 }
 
+function timeoutSync(delay) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay)
+  })
+}
+
+export function sans(text) {
+  let nextArray
+
+  if (Array.isArray(text)) {
+    if (text.length === 0) {
+      return
+    }
+    nextArray = text.slice(1)
+    text = text[0]
+  }
+
+  const dialogField = document.createElement('div')
+  const sansVoice = new Audio('/audio/voice_sans.mp3')
+  const sansDOM = document.querySelector('#sans')
+
+  dialogField.style.textAlign = 'left'
+  sansDOM.append(dialogField)
+
+  let prom = timeoutSync(1000)
+
+  for (const t of text) {
+    prom = prom.then(() => {
+      dialogField.append(t)
+      sansVoice.currentTime = 0
+      sansVoice.play()
+      return timeoutSync(50)
+    })
+  }
+
+  return prom
+    .then(() => {
+      return timeoutSync(2000)
+    })
+    .then(() => {
+      dialogField.remove()
+      return sans(nextArray)
+    })
+}
+
 export function success(text) {
   createAlertField(text, 'lightgreen')
 }
